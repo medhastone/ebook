@@ -1,6 +1,6 @@
 {
-  "summary":  "Plan to audit and verify that every buy/purchase CTA button across all sections and modals links directly to the SuperProfile payment gateway URL (SUPERPROFILE_PAYMENT_URL).",
-  "updatedAt":  "2026-10-04T14:10:24.472319878Z",
+  "summary":  "Plan to integrate Meta Pixel (ID: 4497135493888106) into app/layout.tsx and connect standard conversion tracking events (PageView, InitiateCheckout, Lead) inside lib/analytics.ts.",
+  "updatedAt":  "2026-10-04T15:31:43.358509597Z",
   "requestFeedback":  true,
   "userFacing":  true
 }

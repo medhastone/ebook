@@ -1,34 +1,28 @@
-# Implementation Plan: Comprehensive Audit of All CTA Payment Links
+# Implementation Plan: Meta Pixel Integration (Pixel ID: 4497135493888106)
 
 ## Problem Statement
-The user requested a thorough review to ensure **every buy/purchase CTA button** across the entire website links directly to the payment page URL (`SUPERPROFILE_PAYMENT_URL`).
+The user requested integrating Meta Pixel code with ID `4497135493888106` across the website to track conversion data, pageviews, and checkout intent events for Facebook/Meta advertising campaigns.
 
 ---
 
-## Audit Checklist & Verification Targets
+## Technical Specifications
 
-1. **`StickyTopBar.tsx`**: Header CTA button (`Get Kit • ₹299`).
-2. **`HeroSection.tsx`**: Main Hero CTA button (`Get Kit for ₹299`) + guarantee link.
-3. **`TwelveToolsShowcase.tsx`**: Tool unlock CTA buttons.
-4. **`FreeHindiVersionSection.tsx`**: Hindi + English bundle unlock CTA.
-5. **`BonusCreatorBundle.tsx`**: Creator 500GB bundle unlock CTA.
-6. **`OfferStack.tsx`**: Full value stack CTA button (`Unlock Everything for ₹299`).
-7. **`SavingsRoiCalculator.tsx`**: Financial ROI simulator CTA button.
-8. **`PricingSection.tsx`**: Master pricing card CTA button (`Unlock Salary Reset Kit • ₹299`).
-9. **`FinalCta.tsx`**: Bottom emotional closing CTA button.
-10. **`StickyMobileCta.tsx`**: Mobile bottom sticky bar CTA button.
-11. **`FloatingRightOfferWidget.tsx`**: Floating right offer badge CTA (`GET IT NOW • ₹299`).
-12. **`SamplePagePreviewModal.tsx`**: Ebook preview paywall CTA button.
-13. **`CheckoutModal.tsx`**: Modal checkout button (`Proceed to Secure Payment`).
+### 1. `app/layout.tsx`
+- Inject Next.js `Script` or inline Meta Pixel initialization code in the root layout `<head>`:
+  - Base script loading `https://connect.facebook.net/en_US/fbevents.js`.
+  - `fbq('init', '4497135493888106');`
+  - `fbq('track', 'PageView');`
+- Add `<noscript>` fallback tracking image pixel:
+  - `https://www.facebook.com/tr?id=4497135493888106&ev=PageView&noscript=1`
 
----
-
-## Proposed Changes
-- Inspect every listed file.
-- Ensure all buy buttons either navigate directly to `SUPERPROFILE_PAYMENT_URL` (`https://superprofile.bio/vp/6895315b706c9e`) or trigger `onBuyClick` which executes `window.location.href = SUPERPROFILE_PAYMENT_URL`.
+### 2. `lib/analytics.ts`
+- Extend `trackEvent` helper function to trigger standard Meta Pixel conversion events:
+  - `click_buy` → `fbq('track', 'InitiateCheckout', { value: 299, currency: 'INR' })`
+  - `apply_coupon_success` → `fbq('trackCustom', 'ApplyCoupon', { coupon: 'MEDHASTONE' })`
+  - `calc_complete` → `fbq('track', 'Lead', { value: 299, currency: 'INR' })`
 
 ---
 
 ## Verification Plan
-1. **Source Code Inspection**: Verify all 13 components reference `SUPERPROFILE_PAYMENT_URL` or `onBuyClick`.
+1. **Script Verification**: Ensure Meta Pixel initializes without console errors.
 2. **Build & Lint Verification**: Run `lint_applet` and `compile_applet`.
