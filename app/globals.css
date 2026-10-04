@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --color-navy: #14213D;
+  --color-navy-dark: #0B132B;
+  --color-saffron: #E8871E;
+  --color-saffron-dark: #C97112;
+  --color-saffron-light: #FFF4E6;
+  --color-green: #2E7D5B;
+  --color-green-dark: #225C43;
+  --color-green-light: #EBF7F1;
+  --color-cream: #FBF9F5;
+  --color-paper: #F4EFE6;
+}
+
+.font-serif-title {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+}
+
+.font-sans-body {
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom styling for sleek range inputs */
+input[type="range"] {
+  accent-color: #E8871E;
+}
